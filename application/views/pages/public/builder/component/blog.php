@@ -20,7 +20,8 @@
                     </div>
                     <div class="blog-text">
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit
+                            non vulputate. Aliquam metus tortor
                         </p>
                     </div>
                 </div>
@@ -40,7 +41,8 @@
                     </div>
                     <div class="blog-text">
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit
+                            non vulputate. Aliquam metus tortor
                         </p>
                     </div>
                 </div>
@@ -60,7 +62,8 @@
                     </div>
                     <div class="blog-text">
                         <p>
-                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor
+                            Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit
+                            non vulputate. Aliquam metus tortor
                         </p>
                     </div>
                 </div>

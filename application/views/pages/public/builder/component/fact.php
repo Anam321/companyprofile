@@ -9,7 +9,7 @@
                         </div>
                         <div class="fact-text">
                             <h2 data-toggle="counter-up">109</h2>
-                            <p>Expert Workers</p>
+                            <p>visitors</p>
                         </div>
                     </div>
                     <div class="col-6">

@@ -13,4 +13,15 @@ class Main_m extends CI_Model
         $query = $this->db->get($table)->result();
         return $query;
     }
+    public function fetc_where_data($table, $where, $field)
+    {
+        $query = $this->db->get_where($table, [$where => $field])->row_array();
+        return $query;
+    }
+    public function fetc_all_data_where($table, $where, $field)
+    {
+        $this->db->where($where, $field);
+        $query = $this->db->get($table)->result();
+        return $query;
+    }
 }

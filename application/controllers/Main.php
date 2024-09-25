@@ -21,8 +21,19 @@ class Main extends CI_Controller
         $data['static'] = $this->static();
         $data['title'] = 'website konstruksi';
 
-        $data['slider'] = $this->models->fetc_all_data('tbl_slider');
+        $data['meta_service'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'SERVICE');
+        $data['meta_patner'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'PATNER');
+        $data['meta_fax'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'FAX');
 
+
+        $data['slider'] = $this->models->fetc_all_data('tbl_slider');
+        $data['feature'] = $this->models->fetc_all_data('tbl_feature');
+        $data['about'] = $this->models->fetc_where_data('tbl_about', 'id', 1);
+        $data['service'] = $this->models->fetc_all_data_where('tbl_service', 'private', 0);
+        $data['patner'] = $this->models->fetc_all_data('tbl_patner');
+        $data['faxLeft'] = $this->models->fetc_all_data_where('tbl_fax', 'position', 'LEFT');
+        $data['faxRight'] = $this->models->fetc_all_data_where('tbl_fax', 'position', 'RIGHT');
+        $data['testimoni'] = $this->models->fetc_all_data('tbl_testimoni');
         $this->load->view('main', $data);
     }
 }
