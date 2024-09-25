@@ -9,7 +9,8 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                     <div class="logo">
                         <a href="index.html">
                             <!-- <h1>AYUDIA</h1> -->
-                            <img src="<?= htmlentities(base_url('assets/public/img/') . app('logo'), ENT_QUOTES) ?>" alt="<?= htmlentities(app('app_name')) ?>">
+                            <img src="<?= htmlentities(base_url('assets/public/img/') . app('logo'), ENT_QUOTES) ?>"
+                                alt="<?= htmlentities(app('app_name')) ?>">
                         </a>
                     </div>
                 </div>
@@ -33,7 +34,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Telpon</h3>
-                                    <p>+<?= app('telpon')?></p>
+                                    <p>+<?= app('telpon') ?></p>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Email</h3>
-                                    <p><?= app('email')?></p>
+                                    <p><?= app('email') ?></p>
                                 </div>
                             </div>
                         </div>
@@ -66,21 +67,26 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="team.html" class="nav-item nav-link">Team</a>
-                        <a href="portfolio.html" class="nav-item nav-link">Project</a>
+                        <a href="<?= base_url() ?>" class="nav-item nav-link active">Home</a>
+                        <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>" class="nav-item nav-link">Tentang
+                            Kami</a>
+                        <a href="<?= htmlentities(base_url('service'), ENT_QUOTES) ?>"
+                            class="nav-item nav-link">Layanan</a>
+                        <a href="<?= htmlentities(base_url('portfolio'), ENT_QUOTES) ?>"
+                            class="nav-item nav-link">Portfolio</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kategori</a>
                             <div class="dropdown-menu">
-                                <a href="blog.html" class="dropdown-item">Blog Page</a>
-                                <a href="single.html" class="dropdown-item">Single Page</a>
+                                <a href="<?= htmlentities(base_url('category/'), ENT_QUOTES) ?>"
+                                    class="dropdown-item">Blog
+                                    Page</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="<?= htmlentities(base_url('blog'), ENT_QUOTES) ?>" class="nav-item nav-link">Blog</a>
+                        <a href="<?= htmlentities(base_url('contact'), ENT_QUOTES) ?>"
+                            class="nav-item nav-link">Kontak</a>
                     </div>
-                  
+
                 </div>
             </nav>
         </div>

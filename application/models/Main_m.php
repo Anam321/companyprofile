@@ -24,4 +24,12 @@ class Main_m extends CI_Model
         $query = $this->db->get($table)->result();
         return $query;
     }
+    public function fetc_where_data_Where_limit($table, $where, $field, $limit)
+    {
+        $this->db->where($where, $field);
+        $this->db->limit($limit);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get($table)->result();
+        return $query;
+    }
 }
