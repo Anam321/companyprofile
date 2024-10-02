@@ -32,4 +32,16 @@ class Main_m extends CI_Model
         $query = $this->db->get($table)->result();
         return $query;
     }
+
+
+    public function get_dataLimit($limit, $start)
+    {
+        // $this->db->where('status', 1);
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get('pages_portfolio', $limit, $start)->result_array();
+    }
+    public function get_CountLimit()
+    {
+        return $this->db->get('pages_portfolio')->num_rows();
+    }
 }

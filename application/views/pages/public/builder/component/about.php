@@ -1,3 +1,8 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed'); ?>
+<?php if ($this->uri->segment(1) == 'about'): ?>
+    <?php $this->load->view('pages/public/builder/component/breadcump') ?>
+<?php endif ?>
 <div class="about wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="row align-items-center">

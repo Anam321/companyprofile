@@ -21,6 +21,8 @@ function app($x)
         $r = $q['deskripsi'];
     } elseif (($x == 'keyword')) {
         $r = $q['keyword'];
+    } elseif (($x == 'title')) {
+        $r = $q['title'];
     }
     return $r;
 }
@@ -40,3 +42,10 @@ function get_db($table)
     $q = $ci->db->get($table)->result();
     return $q;
 }
+
+// function get_db_where($table)
+// {
+//     $ci = get_instance();
+//     $q = $ci->db->get_where($table, [$where => $filed])->row_array();
+//     return $q;
+// }

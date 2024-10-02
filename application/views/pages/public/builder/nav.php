@@ -8,7 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
                         <a href="index.html">
-                            <!-- <h1>AYUDIA</h1> -->
+                            <!-- <h1>Anugrah Alumunium</h1> -->
                             <img src="<?= htmlentities(base_url('assets/public/img/') . app('logo'), ENT_QUOTES) ?>"
                                 alt="<?= htmlentities(app('app_name')) ?>">
                         </a>
@@ -17,15 +17,15 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                 <div class="col-lg-8 col-md-7 d-none d-lg-block">
                     <div class="row">
                         <div class="col-4">
-                            <!-- <div class="top-bar-item">
+                            <div class="top-bar-item">
                                 <div class="top-bar-icon">
                                     <i class="flaticon-calendar"></i>
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Opening Hour</h3>
-                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                    <p>Mon - Fri, 7:00 - 24:00</p>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                         <div class="col-4">
                             <div class="top-bar-item">
@@ -67,13 +67,22 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="<?= base_url() ?>" class="nav-item nav-link active">Home</a>
-                        <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>" class="nav-item nav-link">Tentang
+                        <a href="<?= base_url() ?>" class="nav-item nav-link <?php if ($this->uri->segment(1) == '') {
+                                                                                    echo 'active';
+                                                                                } ?>">Home</a>
+                        <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>"
+                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'about') {
+                                                            echo 'active';
+                                                        } ?>">Tentang
                             Kami</a>
                         <a href="<?= htmlentities(base_url('service'), ENT_QUOTES) ?>"
-                            class="nav-item nav-link">Layanan</a>
+                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'service') {
+                                                            echo 'active';
+                                                        } ?>">Layanan</a>
                         <a href="<?= htmlentities(base_url('portfolio'), ENT_QUOTES) ?>"
-                            class="nav-item nav-link">Portfolio</a>
+                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'portfolio') {
+                                                            echo 'active';
+                                                        } ?>">Portfolio</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kategori</a>
                             <div class="dropdown-menu">
