@@ -11,3 +11,7 @@ $route['app-admin/login'] = 'auth/login';
 $route['about'] = 'main/about';
 $route['service'] = 'main/service';
 $route['portfolio'] = 'main/portfolio';
+$route['blog'] = 'main/blog';
+$route['contact'] = 'main/contact';
+$route['contact/form/send_message'] = 'main/send_message';
+$route['contact/form/sendNews'] = 'main/sendNews';

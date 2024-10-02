@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed'); ?>
+
+<?php if ($this->uri->segment(1) == 'blog'): ?>
+    <?php $this->load->view('pages/public/builder/component/breadcump') ?>
+<?php endif ?>
 <div class="blog">
     <div class="container">
         <div class="section-header text-center">

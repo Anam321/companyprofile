@@ -34,14 +34,29 @@ class Main_m extends CI_Model
     }
 
 
-    public function get_dataLimit($limit, $start)
+    public function get_dataLimit($table, $limit, $start)
     {
         // $this->db->where('status', 1);
         $this->db->order_by('id', 'DESC');
-        return $this->db->get('pages_portfolio', $limit, $start)->result_array();
+        return $this->db->get($table, $limit, $start)->result();
     }
-    public function get_CountLimit()
+    public function get_CountLimit($table)
     {
-        return $this->db->get('pages_portfolio')->num_rows();
+        return $this->db->get($table)->num_rows();
+    }
+
+    public function PostData($table, $data)
+    {
+        $r = $this->db->insert($table, $data);
+        if ($r) {
+            $res['status'] = '00';
+            $res['type'] = 'success';
+            $res['mess'] = 'Success Input Data';
+        } else {
+            $res['status'] = '01';
+            $res['type'] = 'warning';
+            $res['mess'] = 'Error Input Data, please try again...';
+        }
+        return $res;
     }
 }

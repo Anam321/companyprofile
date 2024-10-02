@@ -23,6 +23,8 @@ function app($x)
         $r = $q['keyword'];
     } elseif (($x == 'title')) {
         $r = $q['title'];
+    } elseif (($x == 'map')) {
+        $r = $q['map'];
     }
     return $r;
 }

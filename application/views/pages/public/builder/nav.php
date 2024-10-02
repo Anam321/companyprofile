@@ -70,19 +70,16 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                         <a href="<?= base_url() ?>" class="nav-item nav-link <?php if ($this->uri->segment(1) == '') {
                                                                                     echo 'active';
                                                                                 } ?>">Home</a>
-                        <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>"
-                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'about') {
-                                                            echo 'active';
-                                                        } ?>">Tentang
+                        <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>" class="nav-item nav-link <?php if ($this->uri->segment(1) == 'about') {
+                                                                                                                    echo 'active';
+                                                                                                                } ?>">Tentang
                             Kami</a>
-                        <a href="<?= htmlentities(base_url('service'), ENT_QUOTES) ?>"
-                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'service') {
-                                                            echo 'active';
-                                                        } ?>">Layanan</a>
-                        <a href="<?= htmlentities(base_url('portfolio'), ENT_QUOTES) ?>"
-                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'portfolio') {
-                                                            echo 'active';
-                                                        } ?>">Portfolio</a>
+                        <a href="<?= htmlentities(base_url('service'), ENT_QUOTES) ?>" class="nav-item nav-link <?php if ($this->uri->segment(1) == 'service') {
+                                                                                                                    echo 'active';
+                                                                                                                } ?>">Layanan</a>
+                        <a href="<?= htmlentities(base_url('portfolio'), ENT_QUOTES) ?>" class="nav-item nav-link <?php if ($this->uri->segment(1) == 'portfolio') {
+                                                                                                                        echo 'active';
+                                                                                                                    } ?>">Portfolio</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kategori</a>
                             <div class="dropdown-menu">
@@ -91,7 +88,10 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                                     Page</a>
                             </div>
                         </div>
-                        <a href="<?= htmlentities(base_url('blog'), ENT_QUOTES) ?>" class="nav-item nav-link">Blog</a>
+                        <a href="<?= htmlentities(base_url('blog'), ENT_QUOTES) ?>"
+                            class="nav-item nav-link <?php if ($this->uri->segment(1) == 'blog') {
+                                                            echo 'active';
+                                                        } ?>">Blog</a>
                         <a href="<?= htmlentities(base_url('contact'), ENT_QUOTES) ?>"
                             class="nav-item nav-link">Kontak</a>
                     </div>

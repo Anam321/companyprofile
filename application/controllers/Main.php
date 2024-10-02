@@ -115,7 +115,7 @@ class Main extends CI_Controller
         // CONFIG PAGINTION
 
         $config['base_url'] = base_url('main/portfolio');
-        $config['total_rows'] = $this->models->get_CountLimit();
+        $config['total_rows'] = $this->models->get_CountLimit('pages_portfolio');
         $config['per_page'] = 12;
         $config['num_links'] = 5;
 
@@ -157,9 +157,145 @@ class Main extends CI_Controller
         $data1['start'] = $this->uri->segment('3');
 
 
-        $data['portfolio_data'] = $this->models->get_dataLimit($config['per_page'], $data1['start']);
+        $data['portfolio_data'] = $this->models->get_dataLimit('pages_portfolio', $config['per_page'], $data1['start']);
         $data['paging'] = $this->pagination->create_links();
 
         $this->load->view('main', $data);
+    }
+
+    public function blog()
+    {
+        $this->load->library('pagination');
+        $meta_blog =  $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');
+
+
+        $data['body'] = 'pages/public/builder/component/blog';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $meta_blog['meta_title'];
+        $data['seo_deskripsi'] = $meta_blog['meta_deskripsi'];
+        $data['seo_keyword'] = app('keyword');
+        $data['robots'] = 'all, index, follow';
+
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['meta_blog'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');
+        $data['breadcump_1'] = $this->uri->segment(1);
+
+
+
+
+
+        // CONFIG PAGINTION
+
+        $config['base_url'] = base_url('main/blog');
+        $config['total_rows'] = $this->models->get_CountLimit('tbl_blog');
+        $config['per_page'] = 12;
+        $config['num_links'] = 5;
+
+        // var_dump($config['total_rows']); 
+        // die;
+
+        // STAYLIING PAGINATION
+
+        $config['full_tag_open'] = '<nav class="justify-content-center d-flex"><ul class="pagination">';
+        $config['full_tag_close'] = ' </ul></nav>';
+
+        $config['first_link'] = 'first';
+        $config['first_tag_open'] = ' <li class="page-item">';
+        $config['first_tag_close'] = ' </li>';
+
+        $config['last_link'] = 'Last';
+        $config['last_tag_open'] = ' <li class="page-item">';
+        $config['last_tag_close'] = ' </li>';
+
+
+        $config['next_link'] = '&raquo';
+        $config['next_tag_open'] = ' <li class="page-item">';
+        $config['next_tag_close'] = ' </li>';
+
+        $config['prev_link'] = '&laquo';
+        $config['prev_tag_open'] = ' <li class="page-item">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['cur_tag_open'] = ' <li class="page-item active"><a href="#" class="page-link" aria-label="Previous">';
+        $config['cur_tag_close'] = '</a></li>';
+
+        $config['num_tag_open'] = ' <li class="page-item">';
+        $config['num_tag_close'] = ' </li>';
+
+        $config['attributes'] = array('class' => 'page-link');
+
+        // INISIALISASI
+        $this->pagination->initialize($config);
+        $data1['start'] = $this->uri->segment('3');
+
+
+        $data['blog'] = $this->models->get_dataLimit('tbl_blog', $config['per_page'], $data1['start']);
+        $data['paging'] = $this->pagination->create_links();
+
+        $this->load->view('main', $data);
+    }
+
+    public function contact()
+    {
+        $blog_title = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'CONTACT');
+        $data['body'] = 'pages/public/builder/component/contact';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $blog_title['meta_title'];
+        $data['seo_deskripsi'] = app('deskripsi');
+        $data['seo_keyword'] = app('keyword');
+        $data['robots'] = 'all, index, follow';
+
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['meta_contact'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'CONTACT');
+
+        $data['breadcump_1'] = $this->uri->segment(1);
+
+        $data['about'] = $this->models->fetc_where_data('tbl_about', 'id', 1);
+
+        $this->load->view('main', $data);
+    }
+
+
+    public function send_message()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = array(
+
+                'name' => htmlspecialchars($this->input->post('name')),
+                'email' => htmlspecialchars($this->input->post('email')),
+                'subject' => htmlspecialchars($this->input->post('subject')),
+                'message' => htmlspecialchars($this->input->post('message')),
+                'visit' => 1,
+                'date_send' => date('Y-m-d H:i:s'),
+            );
+
+            $response = $this->models->PostData('tbl_message', $data);
+            echo json_encode($response);
+        } else {
+            $this->output->set_status_header(403);
+            show_error('Url tidak di temukan');
+        }
+    }
+    public function sendNews()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = array(
+                'email' => htmlspecialchars($this->input->post('email')),
+            );
+
+            $response = $this->models->PostData('tbl_custumer_email', $data);
+            echo json_encode($response);
+        } else {
+            $this->output->set_status_header(403);
+            show_error('Url tidak di temukan');
+        }
     }
 }

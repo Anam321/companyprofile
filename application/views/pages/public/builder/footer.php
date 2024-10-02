@@ -1,5 +1,43 @@
   <?php
     defined('BASEPATH') or exit('No direct script access allowed'); ?>
+
+  <link rel="stylesheet" type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+  </script>
+
+
+  <style>
+.spinner {
+    /*   for centering div */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /*   spinner div css */
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /*   background-color : red; */
+    border: 10px solid #ccc;
+    border-top-color: #007bff;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  </style>
   <!-- Footer Start -->
   <div class="footer wow fadeIn" data-wow-delay="0.3s">
       <div class="container">
@@ -49,8 +87,10 @@
                           unggulan kami, dan promosi menarik lain nya, Gabung bersama kami sekarang.
                       </p>
                       <div class="form">
-                          <input class="form-control" placeholder="Email here">
-                          <button class="btn">Submit</button>
+                          <form id="formNewslater">
+                              <input class="form-control" type="email" name="email" placeholder="Email here">
+                              <button class="btn" id="sendNewslater">Submit</button>
+                          </form>
                       </div>
                   </div>
               </div>
@@ -95,3 +135,73 @@
 
   <!-- Template Javascript -->
   <script src="<?= base_url('assets/public/') ?>js/main.js"></script>
+
+
+  <script>
+toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-center",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+
+
+$('#formNewslater').submit(function(e) {
+    e.preventDefault();
+    var form = $('#formNewslater')[0];
+    var data = new FormData(form);
+
+    $('#sendNewslater').html(
+        "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading..."
+    ).attr('disabled', true);
+
+    $.ajax({
+        url: "<?php echo site_url('contact/form/sendNews') ?>",
+        type: "POST",
+        //contentType: 'multipart/form-data',
+        cache: false,
+        contentType: false,
+        processData: false,
+        method: 'POST',
+        data: data,
+        dataType: "JSON",
+
+        success: function(data) {
+            if (data.status == '00') {
+                setTimeout(function() {
+                    $('#sendNewslater').text('Submit'); //change button text
+                    $('#sendNewslater').attr('disabled', false); //set button enable
+                    $('#formNewslater')[0].reset();
+                    toastr.success('Berhasil di kirim...')
+                }, 2000);
+            } else {
+                setTimeout(function() {
+                    $('#sendNewslater').text('Submit'); //change button text
+                    $('#sendNewslater').attr('disabled', false); //set button enable
+                    toastr.error(data.mess)
+                }, 2000);
+            }
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            setTimeout(function() {
+                $('#sendNewslater').text('Submit'); //change button text
+                $('#sendNewslater').attr('disabled', false); //set button enable
+                toastr.error('Error Code....')
+            }, 2000);
+        }
+    });
+
+});
+  </script>
