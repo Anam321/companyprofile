@@ -293,23 +293,126 @@ class Main extends CI_Controller
     }
 
 
-    public function blog_detail($slug)
+    public function blog_detail($x)
     {
-        $blog_seo = $this->models->fetc_where_data('tbl_blog', 'slug', $slug);
-        $data['body'] = 'pages/public/builder/component/blog_detail';
+
+        $c = array(' ');
+        $d = array('&', '/', '\\', ',', '.', '#', ':', ';', '\'', '"', '[', ']', '{', '}', ')', '(', '|', '`', '~', '!', '@', '%', '$', '^', '&', '*', '=', '?', '+', '–', '\n', '\r');
+        $s = str_replace($d, '', htmlspecialchars($x, ENT_QUOTES)); // 
+        $slug = strtolower(str_replace($c, '-', $s)); // 
+
+        $sql = $this->db->query("SELECT slug FROM tbl_blog where slug='$slug'");
+        $cek_url = $sql->num_rows();
+        if ($cek_url == false) {
+            $this->output->set_status_header(403);
+            show_error('Url tidak di temukan');
+        } else {
+            $blog_seo = $this->models->fetc_where_data('tbl_blog', 'slug', $slug);
+            $data['body'] = 'pages/public/builder/component/blog_detail';
+            $data['static'] = $this->static();
+            $data['seo_title'] = $blog_seo['title'];
+            $data['seo_deskripsi'] = $blog_seo['meta_deskripsi'];
+            $data['seo_keyword'] = $blog_seo['keyword'];
+            $data['robots'] = 'all, index, follow';
+
+            $data['ogImages'] = base_url('assets/public/img/') . $blog_seo['foto'];
+            $data['ogAlt'] = 'all, index, follow';
+
+            $data['breadcump_1'] = $this->uri->segment(1);
+            $data['field'] = $blog_seo;
+            $data['category'] = $this->models->fetc_all_data('set_category');
+            $data['recentPost'] = $this->models->fetc_all_data_limit('tbl_blog', 12, 'id', 'DESC');
+            $this->load->view('main', $data);
+        }
+    }
+    public function portfolio_detail($x)
+    {
+
+        $c = array(' ');
+        $d = array('&', '/', '\\', ',', '.', '#', ':', ';', '\'', '"', '[', ']', '{', '}', ')', '(', '|', '`', '~', '!', '@', '%', '$', '^', '&', '*', '=', '?', '+', '–', '\n', '\r');
+        $s = str_replace($d, '', htmlspecialchars($x, ENT_QUOTES)); // 
+        $slug = strtolower(str_replace($c, '-', $s)); // 
+
+        $sql = $this->db->query("SELECT link FROM pages_portfolio where link='$slug'");
+        $cek_url = $sql->num_rows();
+        if ($cek_url == false) {
+            $this->output->set_status_header(403);
+            show_error('Url tidak di temukan');
+        } else {
+            $portfolio_seo = $this->models->fetc_where_data('pages_portfolio', 'link', $slug);
+            $data['body'] = 'pages/public/builder/component/portfolio_detail';
+            $data['static'] = $this->static();
+            $data['seo_title'] = $portfolio_seo['title'];
+            $data['seo_deskripsi'] = $portfolio_seo['desk'];
+            $data['seo_keyword'] = $portfolio_seo['keyword'];
+            $data['robots'] = 'all, index, follow';
+
+            $data['ogImages'] = base_url('assets/public/img/') . $portfolio_seo['images'];
+            $data['ogAlt'] = 'all, index, follow';
+
+            $data['breadcump_1'] = $this->uri->segment(1);
+            $data['field'] = $portfolio_seo;
+            $data['populerportfolio'] = $this->models->fetc_all_data_limit('pages_portfolio', 12, 'id', 'DESC');
+            $this->load->view('main', $data);
+        }
+    }
+    public function service_detail($x)
+    {
+
+        $c = array(' ');
+        $d = array('&', '/', '\\', ',', '.', '#', ':', ';', '\'', '"', '[', ']', '{', '}', ')', '(', '|', '`', '~', '!', '@', '%', '$', '^', '&', '*', '=', '?', '+', '–', '\n', '\r');
+        $s = str_replace($d, '', htmlspecialchars($x, ENT_QUOTES)); // 
+        $slug = strtolower(str_replace($c, '-', $s)); // 
+
+        $sql = $this->db->query("SELECT slug FROM tbl_service where slug='$slug'");
+        $cek_url = $sql->num_rows();
+        if ($cek_url == false) {
+            $this->output->set_status_header(403);
+            show_error('Url tidak di temukan');
+        } else {
+            $service_seo = $this->models->fetc_where_data('tbl_service', 'slug', $slug);
+            $data['body'] = 'pages/public/builder/component/service_detail';
+            $data['static'] = $this->static();
+            $data['seo_title'] = $service_seo['title'];
+            $data['seo_deskripsi'] = $service_seo['meta_deskripsi'];
+            $data['seo_keyword'] = $service_seo['keyword'];
+            $data['robots'] = 'all, index, follow';
+
+            $data['ogImages'] = base_url('assets/public/img/') . $service_seo['images'];
+            $data['ogAlt'] = 'all, index, follow';
+
+            $data['breadcump_1'] = $this->uri->segment(1);
+            $data['field'] = $service_seo;
+            $data['serviceall'] = $this->models->fetc_all_data_limit('tbl_service', 12, 'id', 'DESC');
+            $this->load->view('main', $data);
+        }
+    }
+
+
+    public function categori($x)
+    {
+
+
+        $c = array(' ');
+        $d = array('&', '/', '\\', ',', '.', '#', ':', ';', '\'', '"', '[', ']', '{', '}', ')', '(', '|', '`', '~', '!', '@', '%', '$', '^', '&', '*', '=', '?', '+', '–', '\n', '\r');
+        $s = str_replace($d, '', htmlspecialchars($x, ENT_QUOTES)); // 
+        $slug = strtolower(str_replace($c, '-', $s)); // 
+
+        $blog_seo =  $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');;
+        $data['body'] = 'pages/public/builder/component/categori';
         $data['static'] = $this->static();
-        $data['seo_title'] = $blog_seo['title'];
+        $data['seo_title'] = 'Categori | ' . $blog_seo['meta_title'];
         $data['seo_deskripsi'] = $blog_seo['meta_deskripsi'];
-        $data['seo_keyword'] = $blog_seo['keyword'];
+        $data['seo_keyword'] = '';
         $data['robots'] = 'all, index, follow';
 
-        $data['ogImages'] = base_url('assets/public/img/') . $blog_seo['foto'];
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
         $data['ogAlt'] = 'all, index, follow';
 
         $data['breadcump_1'] = $this->uri->segment(1);
-        $data['field'] = $blog_seo;
-        $data['category'] = $this->models->fetc_all_data('set_category');
-        $data['recentPost'] = $this->models->fetc_all_data_limit('tbl_blog', 12, 'id', 'DESC');
+
+        $data['blog'] = $this->models->fetc_where_data_Where_limit('tbl_blog', 'category', $slug, 12);
+
         $this->load->view('main', $data);
     }
 }

@@ -2,14 +2,14 @@
 defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="col-lg-4">
     <div class="sidebar">
-        <div class="sidebar-widget wow fadeInUp">
+        <!-- <div class="sidebar-widget wow fadeInUp">
             <div class="search-widget">
                 <form>
                     <input class="form-control" type="text" placeholder="Search Keyword">
                     <button class="btn"><i class="fa fa-search"></i></button>
                 </form>
             </div>
-        </div>
+        </div> -->
 
         <div class="sidebar-widget wow fadeInUp">
             <h2 class="widget-title">Recent Post</h2>

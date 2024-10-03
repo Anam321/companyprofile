@@ -31,7 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                 <div class="single-tags wow fadeInUp">
                     <?php foreach ($category as $ct): ?>
                         <a
-                            href="<?= htmlentities(base_url('category/') . $ct->category, ENT_QUOTES)  ?>"><?= htmlentities($ct->category)  ?></a>
+                            href="<?= htmlentities(base_url('categori/') . $ct->category_seo, ENT_QUOTES)  ?>"><?= htmlentities($ct->category)  ?></a>
                     <?php endforeach ?>
                 </div>
                 <!-- <div class="single-bio wow fadeInUp">
@@ -61,7 +61,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                                     <div class="post-meta">
                                         <p>By<a href="javascript:void()">Admin</a></p>
                                         <p>In<a
-                                                href="<?= htmlentities(base_url('categori/') . $post->category, ENT_QUOTES) ?>"><?php htmlentities($post->category) ?></a>
+                                                href="<?= htmlentities(base_url('categori/') . $post->category, ENT_QUOTES) ?>"><?= htmlentities($post->category) ?></a>
                                         </p>
                                     </div>
                                 </div>

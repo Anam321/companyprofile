@@ -62,9 +62,9 @@ function get_db_nurows($table, $where, $field)
     $qr = $ci->db->get($table)->num_rows();
     return $qr;
 }
-// function get_db_where($table)
-// {
-//     $ci = get_instance();
-//     $q = $ci->db->get_where($table, [$where => $filed])->row_array();
-//     return $q;
-// }
+function get_db_where_onc($table, $where, $filed)
+{
+    $ci = get_instance();
+    $q = $ci->db->get_where($table, [$where => $filed])->row_array();
+    return $q;
+}

@@ -16,3 +16,6 @@ $route['contact'] = 'main/contact';
 $route['contact/form/send_message'] = 'main/send_message';
 $route['contact/form/sendNews'] = 'main/sendNews';
 $route['blog/(:any)'] = 'main/blog_detail/$1';
+$route['portfolio/(:any)'] = 'main/portfolio_detail/$1';
+$route['service/(:any)'] = 'main/service_detail/$1';
+$route['categori/(:any)'] = 'main/categori/$1';

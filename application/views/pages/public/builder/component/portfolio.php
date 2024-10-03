@@ -28,7 +28,7 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
                     <div class="portfolio-text">
                         <h3><?= htmlentities($portflio->title) ?></h3>
                         <a class="btn"
-                            href="<?= htmlentities(base_url('portfolio/') . $portflio->link), ENT_QUOTES ?>">+</a>
+                            href="<?= htmlentities(base_url('portfolio/') . $portflio->link,ENT_QUOTES)  ?>">+</a>
                     </div>
                 </div>
             </div>
