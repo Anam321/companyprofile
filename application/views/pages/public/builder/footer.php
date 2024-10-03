@@ -11,32 +11,32 @@
 
 
   <style>
-.spinner {
-    /*   for centering div */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+      .spinner {
+          /*   for centering div */
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-    /*   spinner div css */
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    /*   background-color : red; */
-    border: 10px solid #ccc;
-    border-top-color: #007bff;
-    animation: spin 1s linear infinite;
-}
+          /*   spinner div css */
+          height: 50px;
+          width: 50px;
+          border-radius: 50%;
+          /*   background-color : red; */
+          border: 10px solid #ccc;
+          border-top-color: #007bff;
+          animation: spin 1s linear infinite;
+      }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
+      @keyframes spin {
+          0% {
+              transform: rotate(0deg);
+          }
 
-    100% {
-        transform: rotate(360deg);
-    }
-}
+          100% {
+              transform: rotate(360deg);
+          }
+      }
   </style>
   <!-- Footer Start -->
   <div class="footer wow fadeIn" data-wow-delay="0.3s">
@@ -64,8 +64,8 @@
                   <div class="footer-link">
                       <h2>Services Areas</h2>
                       <?php foreach (get_db('tbl_service') as $service): ?>
-                      <a
-                          href="<?= htmlentities(base_url('service/') . $service->slug, ENT_QUOTES)  ?>"><?= htmlentities($service->title) ?></a>
+                          <a
+                              href="<?= htmlentities(base_url('service/') . $service->slug, ENT_QUOTES)  ?>"><?= htmlentities($service->title) ?></a>
                       <?php endforeach ?>
                   </div>
               </div>
@@ -73,9 +73,9 @@
                   <div class="footer-link">
                       <h2>Useful Pages</h2>
                       <a href="<?= htmlentities(base_url('about'), ENT_QUOTES) ?>">About Us</a>
-                      <a href="<?= htmlentities(base_url('kontak'), ENT_QUOTES)  ?>">Contact Us</a>
+                      <a href="<?= htmlentities(base_url('contact'), ENT_QUOTES)  ?>">Contact Us</a>
                       <a href="<?= htmlentities(base_url('portfolio'), ENT_QUOTES)  ?>">Projects</a>
-                      <a href="<?= htmlentities(base_url('testimoni'), ENT_QUOTES)  ?>">Testimonial</a>
+                      <a href="<?= htmlentities(base_url('service'), ENT_QUOTES)  ?>">Service</a>
                   </div>
               </div>
               <div class="col-md-6 col-lg-3">
@@ -99,8 +99,8 @@
       <div class="container footer-menu">
           <div class="f-menu">
               <a href="<?= htmlentities(base_url('terms'), ENT_QUOTES)  ?>">Terms of use</a>
-              <a href="<?= htmlentities(base_url('privacy', ENT_QUOTES))  ?>">Privacy policy</a>
-              <a href="<?= htmlentities(base_url('fqas'), ENT_QUOTES) ?>">FQAs</a>
+              <a href="<?= htmlentities(base_url('privacy'), ENT_QUOTES)  ?>">Privacy policy</a>
+              <a href="<?= htmlentities(base_url('fqas'), ENT_QUOTES) ?>">FAQS</a>
           </div>
       </div>
       <div class="container copyright">
@@ -138,70 +138,70 @@
 
 
   <script>
-toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": false,
-    "progressBar": true,
-    "positionClass": "toast-top-center",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-}
+      toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": true,
+          "positionClass": "toast-top-center",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+      }
 
 
-$('#formNewslater').submit(function(e) {
-    e.preventDefault();
-    var form = $('#formNewslater')[0];
-    var data = new FormData(form);
+      $('#formNewslater').submit(function(e) {
+          e.preventDefault();
+          var form = $('#formNewslater')[0];
+          var data = new FormData(form);
 
-    $('#sendNewslater').html(
-        "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading..."
-    ).attr('disabled', true);
+          $('#sendNewslater').html(
+              "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading..."
+          ).attr('disabled', true);
 
-    $.ajax({
-        url: "<?php echo site_url('contact/form/sendNews') ?>",
-        type: "POST",
-        //contentType: 'multipart/form-data',
-        cache: false,
-        contentType: false,
-        processData: false,
-        method: 'POST',
-        data: data,
-        dataType: "JSON",
+          $.ajax({
+              url: "<?php echo site_url('contact/form/sendNews') ?>",
+              type: "POST",
+              //contentType: 'multipart/form-data',
+              cache: false,
+              contentType: false,
+              processData: false,
+              method: 'POST',
+              data: data,
+              dataType: "JSON",
 
-        success: function(data) {
-            if (data.status == '00') {
-                setTimeout(function() {
-                    $('#sendNewslater').text('Submit'); //change button text
-                    $('#sendNewslater').attr('disabled', false); //set button enable
-                    $('#formNewslater')[0].reset();
-                    toastr.success('Berhasil di kirim...')
-                }, 2000);
-            } else {
-                setTimeout(function() {
-                    $('#sendNewslater').text('Submit'); //change button text
-                    $('#sendNewslater').attr('disabled', false); //set button enable
-                    toastr.error(data.mess)
-                }, 2000);
-            }
+              success: function(data) {
+                  if (data.status == '00') {
+                      setTimeout(function() {
+                          $('#sendNewslater').text('Submit'); //change button text
+                          $('#sendNewslater').attr('disabled', false); //set button enable
+                          $('#formNewslater')[0].reset();
+                          toastr.success('Berhasil di kirim...')
+                      }, 2000);
+                  } else {
+                      setTimeout(function() {
+                          $('#sendNewslater').text('Submit'); //change button text
+                          $('#sendNewslater').attr('disabled', false); //set button enable
+                          toastr.error(data.mess)
+                      }, 2000);
+                  }
 
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            setTimeout(function() {
-                $('#sendNewslater').text('Submit'); //change button text
-                $('#sendNewslater').attr('disabled', false); //set button enable
-                toastr.error('Error Code....')
-            }, 2000);
-        }
-    });
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                  setTimeout(function() {
+                      $('#sendNewslater').text('Submit'); //change button text
+                      $('#sendNewslater').attr('disabled', false); //set button enable
+                      toastr.error('Error Code....')
+                  }, 2000);
+              }
+          });
 
-});
+      });
   </script>

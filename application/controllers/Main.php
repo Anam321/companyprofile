@@ -67,7 +67,48 @@ class Main extends CI_Controller
 
         $this->load->view('main', $data);
     }
+    public function terms()
+    {
+        $blog_title = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'TERMS');
+        $data['body'] = 'pages/public/builder/component/terms';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $blog_title['meta_title'];
+        $data['seo_deskripsi'] = app('deskripsi');
+        $data['seo_keyword'] = app('keyword');
+        $data['robots'] = 'all, index, follow';
 
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['meta_blog'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');
+
+        $data['breadcump_1'] = $this->uri->segment(1);
+
+        $data['terms'] = $this->models->fetc_where_data('set_terms', 'id', 1);
+
+        $this->load->view('main', $data);
+    }
+    public function privacy()
+    {
+        $blog_title = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'PRIVACY');
+        $data['body'] = 'pages/public/builder/component/privacy';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $blog_title['meta_title'];
+        $data['seo_deskripsi'] = app('deskripsi');
+        $data['seo_keyword'] = app('keyword');
+        $data['robots'] = 'all, index, follow';
+
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['meta_blog'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');
+
+        $data['breadcump_1'] = $this->uri->segment(1);
+
+        $data['field'] = $this->models->fetc_where_data('set_privacy', 'id', 1);
+
+        $this->load->view('main', $data);
+    }
     public function service()
     {
         $service_title = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'SERVICE');

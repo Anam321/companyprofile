@@ -9,6 +9,8 @@ $route['translate_uri_dashes'] = FALSE;
 $route['app-admin/login'] = 'auth/login';
 
 $route['about'] = 'main/about';
+$route['terms'] = 'main/terms';
+$route['privacy'] = 'main/privacy';
 $route['service'] = 'main/service';
 $route['portfolio'] = 'main/portfolio';
 $route['blog'] = 'main/blog';
