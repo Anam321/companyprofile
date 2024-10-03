@@ -15,3 +15,4 @@ $route['blog'] = 'main/blog';
 $route['contact'] = 'main/contact';
 $route['contact/form/send_message'] = 'main/send_message';
 $route['contact/form/sendNews'] = 'main/sendNews';
+$route['blog/(:any)'] = 'main/blog_detail/$1';

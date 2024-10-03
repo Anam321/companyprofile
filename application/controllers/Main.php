@@ -109,9 +109,6 @@ class Main extends CI_Controller
         $data['breadcump_1'] = $this->uri->segment(1);
 
 
-
-
-
         // CONFIG PAGINTION
 
         $config['base_url'] = base_url('main/portfolio');
@@ -181,10 +178,6 @@ class Main extends CI_Controller
 
         $data['meta_blog'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'BLOG');
         $data['breadcump_1'] = $this->uri->segment(1);
-
-
-
-
 
         // CONFIG PAGINTION
 
@@ -297,5 +290,26 @@ class Main extends CI_Controller
             $this->output->set_status_header(403);
             show_error('Url tidak di temukan');
         }
+    }
+
+
+    public function blog_detail($slug)
+    {
+        $blog_seo = $this->models->fetc_where_data('tbl_blog', 'slug', $slug);
+        $data['body'] = 'pages/public/builder/component/blog_detail';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $blog_seo['title'];
+        $data['seo_deskripsi'] = $blog_seo['meta_deskripsi'];
+        $data['seo_keyword'] = $blog_seo['keyword'];
+        $data['robots'] = 'all, index, follow';
+
+        $data['ogImages'] = base_url('assets/public/img/') . $blog_seo['foto'];
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['breadcump_1'] = $this->uri->segment(1);
+        $data['field'] = $blog_seo;
+        $data['category'] = $this->models->fetc_all_data('set_category');
+        $data['recentPost'] = $this->models->fetc_all_data_limit('tbl_blog', 12, 'id', 'DESC');
+        $this->load->view('main', $data);
     }
 }

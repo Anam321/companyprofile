@@ -45,6 +45,23 @@ function get_db($table)
     return $q;
 }
 
+function get_db_where($table, $where, $field, $limit)
+{
+    $ci = get_instance();
+    $ci->db->where($where, $field);
+    $ci->db->limit($limit);
+    $ci->db->order_by('id', 'DESC');
+    $qr = $ci->db->get($table)->result();
+    return $qr;
+}
+function get_db_nurows($table, $where, $field)
+{
+    $ci = get_instance();
+    $ci->db->where($where, $field);
+    $ci->db->order_by('id', 'DESC');
+    $qr = $ci->db->get($table)->num_rows();
+    return $qr;
+}
 // function get_db_where($table)
 // {
 //     $ci = get_instance();
