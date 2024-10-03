@@ -66,4 +66,20 @@ class Main_m extends CI_Model
         }
         return $res;
     }
+
+    public function update($id, $data, $table)
+    {
+
+        $r = $this->db->update($table, $data, $id);
+        if ($r) {
+            $res['status'] = '00';
+            $res['type'] = 'success';
+            $res['mess'] = 'Success Update Data';
+        } else {
+            $res['status'] = '01';
+            $res['type'] = 'warning';
+            $res['mess'] = 'Error Update Data, please try again...';
+        }
+        return $res;
+    }
 }

@@ -11,7 +11,8 @@ $route['app-admin/logout'] = 'auth/logout';
 
 $route['app-admin/dashboard'] = 'dashboard/index';
 
-$route['app-admin/about'] = 'about/index';
+$route['app-admin/pages/about'] = 'about/index';
+
 
 $route['about'] = 'main/about';
 $route['terms'] = 'main/terms';

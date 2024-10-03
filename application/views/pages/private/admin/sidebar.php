@@ -44,7 +44,9 @@
                              <h4 class="text-section">Components</h4>
                          </li>
 
-                         <li class="nav-item">
+                         <li class="nav-item <?php if ($this->uri->segment(2) == 'pages') {
+                                                    echo 'active';
+                                                } ?>">
                              <a data-bs-toggle="collapse" href="#base">
                                  <i class="fas fa-layer-group"></i>
                                  <p>Pages</p>
@@ -52,8 +54,10 @@
                              </a>
                              <div class="collapse" id="base">
                                  <ul class="nav nav-collapse">
-                                     <li>
-                                         <a href="<?= htmlentities(base_url('app-admin/about'), ENT_QUOTES) ?>">
+                                     <li class="<?php if ($this->uri->segment(3) == 'about') {
+                                                    echo 'active';
+                                                } ?>">
+                                         <a href="<?= htmlentities(base_url('app-admin/pages/about'), ENT_QUOTES) ?>">
                                              <span class="sub-item">About</span>
                                          </a>
                                      </li>
