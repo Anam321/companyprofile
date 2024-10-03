@@ -100,7 +100,7 @@
           <div class="f-menu">
               <a href="<?= htmlentities(base_url('terms'), ENT_QUOTES)  ?>">Terms of use</a>
               <a href="<?= htmlentities(base_url('privacy'), ENT_QUOTES)  ?>">Privacy policy</a>
-              <a href="<?= htmlentities(base_url('fqas'), ENT_QUOTES) ?>">FAQS</a>
+              <a href="<?= htmlentities(base_url('faqs'), ENT_QUOTES) ?>">FAQS</a>
           </div>
       </div>
       <div class="container copyright">

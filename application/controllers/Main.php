@@ -109,6 +109,26 @@ class Main extends CI_Controller
 
         $this->load->view('main', $data);
     }
+    public function faqs()
+    {
+        $fax_seo = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'FAX');
+        $data['body'] = 'pages/public/builder/component/fax';
+        $data['static'] = $this->static();
+        $data['seo_title'] = $fax_seo['meta_title'];
+        $data['seo_deskripsi'] = app('deskripsi');
+        $data['seo_keyword'] = app('keyword');
+        $data['robots'] = 'all, index, follow';
+
+        $data['ogImages'] = base_url('assets/public/img/') . app('logo');
+        $data['ogAlt'] = 'all, index, follow';
+
+        $data['breadcump_1'] = $this->uri->segment(1);
+        $data['meta_fax'] = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'FAX');
+        $data['faxLeft'] = $this->models->fetc_all_data_where('tbl_fax', 'position', 'LEFT');
+        $data['faxRight'] = $this->models->fetc_all_data_where('tbl_fax', 'position', 'RIGHT');
+
+        $this->load->view('main', $data);
+    }
     public function service()
     {
         $service_title = $this->models->fetc_where_data('tbl_meta_pages', 'pages', 'SERVICE');

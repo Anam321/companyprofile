@@ -25,6 +25,8 @@ function app($x)
         $r = $q['title'];
     } elseif (($x == 'map')) {
         $r = $q['map'];
+    } elseif (($x == 'favicon')) {
+        $r = $q['favicon'];
     }
     return $r;
 }
@@ -40,6 +42,13 @@ function get_db($table)
 {
     $ci = get_instance();
     $ci->db->limit(6);
+    $ci->db->order_by('id', 'DESC');
+    $q = $ci->db->get($table)->result();
+    return $q;
+}
+function fetch_data($table)
+{
+    $ci = get_instance();
     $ci->db->order_by('id', 'DESC');
     $q = $ci->db->get($table)->result();
     return $q;

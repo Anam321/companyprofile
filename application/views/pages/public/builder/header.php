@@ -36,10 +36,11 @@
 
 
   <!-- Favicon -->
-  <link href="<?= base_url('assets/public/') ?>img/favicon.ico" rel="icon">
+
+  <link href="<?= htmlentities(base_url('assets/public/img/') . app('logo'), ENT_QUOTES) ?>" rel="icon">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet">
+    rel="stylesheet">
   <!-- CSS Libraries -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -52,3 +53,8 @@
 
   <!-- Template Stylesheet -->
   <link href="<?= base_url('assets/public/') ?>css/style.css" rel="stylesheet">
+
+
+  <?php foreach (fetch_data('tbl_plugin') as $f): ?>
+    <?= $f->plugin ?>
+  <?php endforeach ?>

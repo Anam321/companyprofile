@@ -6,11 +6,17 @@ $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['app-admin/login'] = 'auth/login';
+$route['app-admin/login'] = 'auth/index';
+$route['app-admin/logout'] = 'auth/logout';
+
+$route['app-admin/dashboard'] = 'dashboard/index';
+
+$route['app-admin/about'] = 'about/index';
 
 $route['about'] = 'main/about';
 $route['terms'] = 'main/terms';
 $route['privacy'] = 'main/privacy';
+$route['faqs'] = 'main/faqs';
 $route['service'] = 'main/service';
 $route['portfolio'] = 'main/portfolio';
 $route['blog'] = 'main/blog';
