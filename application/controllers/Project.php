@@ -44,6 +44,28 @@ class Project extends CI_Controller
         $this->load->view('main', $data);
     }
 
+    public function confirm($x)
+    {
+        $data['body'] = 'pages/private/admin/project/confirm';
+        $data['static'] = $this->static();
+        $data['seo_title'] = 'Edit Projek';
+        $data['method'] = 'update';
+
+
+        $prj = $this->models->fetch_data();
+        foreach ($prj as $field) {
+            $query = $this->models->get_anggaran($field->id_projek);
+            $anggaran = $query;
+        }
+        $data['anggaran'] = $anggaran;
+        $data['projek'] = $this->db->get_where('ref_projek', ['id_projek' => $x])->row_array();
+        $data['uraian'] = $this->models->get_uraian($x);
+        $data['rab'] = $this->models->get_uraian_rab($x);
+
+
+        $this->load->view('main', $data);
+    }
+
     function dataTables()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -85,7 +107,7 @@ class Project extends CI_Controller
                         <div class="btn-group"><button type="button" class="btn btn-warning btn-sm dropdown-toggle mb-1"  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-edit me-2"></i>Edit</button> 
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="' . base_url('app-admin/project/edit/') . '' . $field->id_projek . '">Edit Data</a></li>
-                                <li><a class="dropdown-item" href="' . base_url('admin/project/confirm/') . '' . $field->id_projek . '">Konfirmasi Status</a></li>
+                                <li><a class="dropdown-item" href="' . base_url('app-admin/project/confirm/') . '' . $field->id_projek . '">Konfirmasi Status</a></li>
                                  
                             </ul>
                         </div>
@@ -118,7 +140,7 @@ class Project extends CI_Controller
                 'nama_client' => $this->input->post('nama_client'),
                 'email' => $this->input->post('email'),
                 'nohp' => $this->input->post('nohp'),
-                'id_kategori' => $this->input->post('kategori'),
+                // 'id_kategori' => $this->input->post('kategori'),
                 'tgl_mulai' => $this->input->post('tgl_mulai'),
                 'tgl_akhir' => $this->input->post('tgl_akhir'),
                 'alamat' => $this->input->post('alamat'),
@@ -144,7 +166,7 @@ class Project extends CI_Controller
                 'nama_client' => $this->input->post('nama_client'),
                 'email' => $this->input->post('email'),
                 'nohp' => $this->input->post('nohp'),
-                'id_kategori' => $this->input->post('kategori'),
+                // 'id_kategori' => $this->input->post('kategori'),
                 'tgl_mulai' => $this->input->post('tgl_mulai'),
                 'tgl_akhir' => $this->input->post('tgl_akhir'),
                 'alamat' => $this->input->post('alamat'),

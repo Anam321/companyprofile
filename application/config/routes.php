@@ -25,6 +25,7 @@ $route['app-admin/project'] = 'project/index';
 $route['app-admin/project/datatable'] = 'project/dataTables';
 $route['app-admin/project/form'] = 'project/form';
 $route['app-admin/project/edit/(:any)'] = 'project/edit/$1';
+$route['app-admin/project/confirm/(:any)'] = 'project/confirm/$1';
 $route['app-admin/project/insertData'] = 'project/insertData';
 $route['app-admin/project/updateData'] = 'project/updateData';
 $route['app-admin/project/delete_data/(:any)'] = 'project/delete_data/$1';

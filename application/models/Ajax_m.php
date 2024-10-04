@@ -65,7 +65,13 @@ class Ajax_m extends CI_Model
         return $this->db->count_all_results();
     }
 
-
+    function fetch_data()
+    {
+        $this->db->where('status', 0);
+        $this->db->order_by('id_projek', 'DESC');
+        $query = $this->db->get('ref_projek')->result();
+        return $query;
+    }
     public function fetc_where_data($table, $where, $field)
     {
         $query = $this->db->get_where($table, [$where => $field])->row_array();
@@ -93,6 +99,17 @@ class Ajax_m extends CI_Model
         $q = $this->db->get('ref_projek_uraian')->result();
         return $q;
     }
+    public function get_uraian_rab($id)
+    {
+        $uraian = $this->get_uraian($id);
+
+        foreach ($uraian as $row) {
+            $this->db->where('id_uraian', $row->id);
+            $query = $this->db->get('ref_projek_rab')->result();
+            return $query;
+        }
+    }
+
     public function PostData($table, $data)
     {
         $r = $this->db->insert($table, $data);
