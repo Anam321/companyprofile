@@ -12,7 +12,13 @@ $route['app-admin/logout'] = 'auth/logout';
 $route['app-admin/dashboard'] = 'dashboard/index';
 
 $route['app-admin/pages/about'] = 'about/index';
-
+$route['app-admin/pages/service'] = 'service/index';
+$route['app-admin/pages/service/form'] = 'service/form';
+$route['app-admin/pages/service/edit/(:any)'] = 'service/edit/$1';
+$route['app-admin/pages/service/datatable'] = 'service/dataTables';
+$route['app-admin/service/insertData'] = 'service/insertData';
+$route['app-admin/service/updateData'] = 'service/updateData';
+$route['app-admin/service/delete_data/(:any)'] = 'service/delete_data/$1';
 
 $route['about'] = 'main/about';
 $route['terms'] = 'main/terms';

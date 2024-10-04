@@ -12,88 +12,88 @@
 
 </head>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Onest:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@600&display=swap');
 
-    :root {
-        --green: #b8d953;
-        --lilac: #b2b2eb;
-        --pink: #bb86e9;
-        --dark-green: #529a91;
-        --peach: #fe96b7;
-        --black: #191819;
-        --grey: #2a292a;
-        --white: #d9d9d9;
+:root {
+    --green: #b8d953;
+    --lilac: #b2b2eb;
+    --pink: #bb86e9;
+    --dark-green: #529a91;
+    --peach: #fe96b7;
+    --black: #191819;
+    --grey: #2a292a;
+    --white: #d9d9d9;
 
+}
+
+
+
+
+.code-block {
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+    background-color: black;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+
+}
+
+
+.loader-page-container {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.loader-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+}
+
+
+.loader-3 {
+    display: inline-block;
+    align-items: center;
+    justify-content: space-around;
+    width: 80px;
+    height: 20px;
+}
+
+.loader-3 div {
+    margin-left: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: var(--lilac);
+    border-radius: 50%;
+    display: inline-block;
+    animation: loader-3-bounce 1.4s infinite ease-in-out both;
+}
+
+.loader-3 div:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loader-3 div:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loader-3-bounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0);
     }
 
-
-
-
-    .code-block {
-        font-family: 'Courier New', Courier, monospace;
-        color: white;
-        background-color: black;
-        padding: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-
+    40% {
+        transform: scale(1.0);
     }
-
-
-    .loader-page-container {
-        display: flex;
-        gap: 30px;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .loader-container {
-        padding: 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 300px;
-    }
-
-
-    .loader-3 {
-        display: inline-block;
-        align-items: center;
-        justify-content: space-around;
-        width: 80px;
-        height: 20px;
-    }
-
-    .loader-3 div {
-        margin-left: 5px;
-        width: 15px;
-        height: 15px;
-        background-color: var(--lilac);
-        border-radius: 50%;
-        display: inline-block;
-        animation: loader-3-bounce 1.4s infinite ease-in-out both;
-    }
-
-    .loader-3 div:nth-child(1) {
-        animation-delay: -0.32s;
-    }
-
-    .loader-3 div:nth-child(2) {
-        animation-delay: -0.16s;
-    }
-
-    @keyframes loader-3-bounce {
-
-        0%,
-        80%,
-        100% {
-            transform: scale(0);
-        }
-
-        40% {
-            transform: scale(1.0);
-        }
-    }
+}
 </style>
 
 <body style="background: url(<?= base_url() ?>assets/auth/images/konstruksi.jpg)">
@@ -153,75 +153,78 @@
 
 
     <script>
-        $('#form').submit(function(e) {
-            e.preventDefault();
-            var form = $('#form')[0];
-            var data = new FormData(form);
-            //  $('#login').html("<i class='fa fa-refresh fa-spin'></i>Loading").attr('disabled', true);
-            $('#login').html("<div class='loader-wrap'><div class='loader loader-3'><div></div><div></div><div></div></div></div>").attr('disabled', true);
-            $.ajax({
-                url: '<?php echo site_url('auth/serverProsess') ?>',
-                type: "POST",
-                //contentType: 'multipart/form-data',
-                cache: false,
-                contentType: false,
-                processData: false,
-                method: 'POST',
-                data: data,
-                dataType: "JSON",
+    $('#form').submit(function(e) {
+        e.preventDefault();
+        var form = $('#form')[0];
+        var data = new FormData(form);
+        //  $('#login').html("<i class='fa fa-refresh fa-spin'></i>Loading").attr('disabled', true);
+        $('#login').html(
+            "<div class='loader-wrap'><div class='loader loader-3'><div></div><div></div><div></div></div></div>"
+            ).attr('disabled', true);
+        $.ajax({
+            url: '<?php echo site_url('auth/serverProsess') ?>',
+            type: "POST",
+            //contentType: 'multipart/form-data',
+            cache: false,
+            contentType: false,
+            processData: false,
+            method: 'POST',
+            data: data,
+            dataType: "JSON",
 
-                success: function(data) {
-                    if (data.status == '00') {
+            success: function(data) {
+                if (data.status == '00') {
 
-                        setTimeout(function() {
-                            $('#login').text('Sign In'); //change button text
-                            $('#login').attr('disabled', false); //set button enable
-                            $('#login').hide();
-                            Swal.fire({
-                                position: "top-midle",
-                                icon: "success",
-                                title: "Anda Berhasil Login",
-                                showConfirmButton: false,
-                                timer: 2500,
-
-                            }).then((result) => {
-                                window.location = '<?php echo base_url('dis/dashboard') ?>';
-                            })
-
-                        }, 1500);
-
-
-                    } else {
-                        setTimeout(function() {
-                            $('#login').text('Sign In'); //change button text
-                            $('#login').attr('disabled', false); //set button enable
-                            Swal.fire({
-                                title: data.mess,
-                                text: "Cek kembali informasi login anda.",
-                                icon: data.type,
-                            }).then((result) => {
-                                window.location.reload();
-                            })
-                        }, 1500);
-
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
                     setTimeout(function() {
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Something went wrong!",
-
-                        });
                         $('#login').text('Sign In'); //change button text
                         $('#login').attr('disabled', false); //set button enable
-                    }, 2000);
+                        $('#login').hide();
+                        Swal.fire({
+                            position: "top-midle",
+                            icon: "success",
+                            title: "Anda Berhasil Login",
+                            showConfirmButton: false,
+                            timer: 2500,
+
+                        }).then((result) => {
+                            window.location =
+                                '<?php echo base_url('app-admin/dashboard') ?>';
+                        })
+
+                    }, 1500);
+
+
+                } else {
+                    setTimeout(function() {
+                        $('#login').text('Sign In'); //change button text
+                        $('#login').attr('disabled', false); //set button enable
+                        Swal.fire({
+                            title: data.mess,
+                            text: "Cek kembali informasi login anda.",
+                            icon: data.type,
+                        }).then((result) => {
+                            window.location.reload();
+                        })
+                    }, 1500);
 
                 }
-            });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                setTimeout(function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
 
+                    });
+                    $('#login').text('Sign In'); //change button text
+                    $('#login').attr('disabled', false); //set button enable
+                }, 2000);
+
+            }
         });
+
+    });
     </script>
 
 </body>

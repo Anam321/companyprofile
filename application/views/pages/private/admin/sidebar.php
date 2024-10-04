@@ -29,8 +29,10 @@
                  <div class="sidebar-content">
                      <ul class="nav nav-secondary">
 
-                         <li class="nav-item active">
-                             <a data-bs-toggle="collapse" href="" class="collapsed" aria-expanded="false">
+                         <li class="nav-item <?php if ($this->uri->segment(2) == 'dashboard') {
+                                                    echo 'active';
+                                                } ?>">
+                             <a href="<?= base_url('app-admin/dashboard') ?>" class="collapsed" aria-expanded="false">
                                  <i class="fas fa-home"></i>
                                  <p>Dashboard</p>
                              </a>
@@ -61,8 +63,10 @@
                                              <span class="sub-item">About</span>
                                          </a>
                                      </li>
-                                     <li>
-                                         <a href="components/buttons.html">
+                                     <li class="<?php if ($this->uri->segment(3) == 'service') {
+                                                    echo 'active';
+                                                } ?>">
+                                         <a href="<?= htmlentities(base_url('app-admin/pages/service'), ENT_QUOTES) ?>">
                                              <span class="sub-item">Service</span>
                                          </a>
                                      </li>
