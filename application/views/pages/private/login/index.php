@@ -6,7 +6,7 @@
 
  <head>
      <meta charset="utf-8">
-     <title>HTML Codex - Login Form Template</title>
+     <title><?= app('app_name') ?> | Login</title>
      <meta content="width=device-width, initial-scale=1.0" name="viewport">
      <meta content="Login Form Template" name="keywords">
      <meta content="Login Form Template" name="description">
@@ -277,7 +277,7 @@
 
                              }).then((result) => {
                                  window.location =
-                                     '<?php echo base_url('dis/dashboard') ?>';
+                                     '<?php echo base_url('app-admin/dashboard') ?>';
                              })
 
                          }, 1500);

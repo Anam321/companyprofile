@@ -71,7 +71,28 @@ class Ajax_m extends CI_Model
         $query = $this->db->get_where($table, [$where => $field])->row_array();
         return $query;
     }
+    public function get_anggaran($id)
+    {
+        $uraian = $this->get_uraian($id);
+        $sub_total = 0;
+        foreach ($uraian as $field) {
+            $total = 0;
+            $this->db->where('id_uraian', $field->id);
+            $query = $this->db->get('ref_projek_rab')->result();
 
+            foreach ($query as $row) {
+                $total += $row->tot_harga;
+            }
+            $sub_total += $total;
+        }
+        return $sub_total;
+    }
+    public function get_uraian($id)
+    {
+        $this->db->where('id_projek', $id);
+        $q = $this->db->get('ref_projek_uraian')->result();
+        return $q;
+    }
     public function PostData($table, $data)
     {
         $r = $this->db->insert($table, $data);

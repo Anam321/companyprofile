@@ -114,6 +114,14 @@
                                  <p>Post</p>
                              </a>
                          </li>
+                         <li class="nav-item <?php if ($this->uri->segment(2) == 'project') {
+                                                    echo 'active';
+                                                } ?>">
+                             <a href="<?= htmlentities(base_url('app-admin/project'), ENT_QUOTES) ?>">
+                                 <i class="fas fa-clipboard"></i>
+                                 <p>Project</p>
+                             </a>
+                         </li>
                          <li class="nav-item">
                              <a data-bs-toggle="collapse" href="#forms">
                                  <i class="fas fa-pen-square"></i>
